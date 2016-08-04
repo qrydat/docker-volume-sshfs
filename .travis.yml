@@ -11,6 +11,6 @@
     - go get github.com/golang/lint/golint
   script:
     - go vet ./...
-    - test -z "$(golint ./... | tee /dev/stderr)"
-    - test -z "$(gofmt -s -l . | tee /dev/stderr)"
+    - test -z "$(golint ./... | grep -v vendor/ | tee /dev/stderr)"
+    - test -z "$(gofmt -s -l . | grep -v vendor/ | tee /dev/stderr)"
     - go test -v ./...
